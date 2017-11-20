@@ -1,0 +1,25 @@
+<div class="row">
+        <div class="col-12">
+            <h1>Purchase Order </h1>
+            <p class="lead">Simplified regime sale of foods and beverage</p>
+            <a type="button" class="btn btn-primary" routerLink="/orders/list">Show Orders</a>
+            <hr>
+        </div>
+        <div class="col-12">
+            <form [formGroup]="orderForm"  autocomplete="new-password" novalidate>
+              <div class="form-group">
+                  <label for="foodBeverageName">Food/Beverage Name</label>
+                  <input type="text" class="form-control" formControlName="search" id="search" name="search" (click)="openDropDown()" placeholder="Enter name" minlength="4">
+              </div>
+              <div clickOutside (clickOutside)="closeDropDown()">
+                  <div *ngIf='showDropDown' class='search-drop-down '>
+                      <div (click)='selectValue(item)' class='search-results ' *ngFor="let item of items | searchFilter: getSearchValue()">
+                          <a [innerHTML]="item.name | letterBold: getSearchValue()"></a>
+                           - {{ item.category }} - {{ item.price | peso }}
+                      </div>
+                  </div>
+              </div>
+            </form>
+        </div>  
+      </div>
+  
